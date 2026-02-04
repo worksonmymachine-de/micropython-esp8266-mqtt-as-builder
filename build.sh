@@ -3,6 +3,10 @@
 # Exit on error
 set -e
 
+apt update && apt install python3-venv python3-full -y
+python3 -m venv venv
+. venv/bin/activate
+
 # --- Configuration ---
 MICROPYTHON_REPO="https://github.com/micropython/micropython.git"
 MQTT_AS_REPO="https://github.com/peterhinch/micropython-mqtt.git"
@@ -17,10 +21,10 @@ git clone "$MQTT_AS_REPO" "$BUILD_DIR/micropython-mqtt"
 
 # --- 2. Setup build environment (Debian) ---
 echo "Installing dependencies..."
-sudo apt-get update
-sudo apt-get install -y make unrar-free autoconf automake libtool gcc g++ gperf \
-    flex bison texinfo gawk ncurses-dev libexpat-dev python-dev python-pip \
-    sed git unzip bash help2man wget bzip2 libtool-bin
+apt update
+apt install -y make unrar-free autoconf automake libtool gcc g++ gperf \
+    flex bison texinfo gawk ncurses-dev libexpat-dev python3-pip git\
+    sed unzip bash help2man wget bzip2 libtool-bin
 
 # --- 3. Build MicroPython ---
 echo "Building MicroPython..."
@@ -31,7 +35,7 @@ cd ../ports/esp8266
 
 # --- 4. Install Python dependencies ---
 echo "Installing Python dependencies for the build..."
-pip install -r requirements.txt
+# pip install -r requirements.txt
 
 # --- 5. Inject MQTT_AS library ---
 echo "Injecting MQTT_AS library..."
@@ -49,7 +53,3 @@ echo "Deploying firmware..."
 FIRMWARE_NAME="firmware-$(date +%Y%m%d-%H%M%S).bin"
 cd build-GENERIC
 mv firmware-combined.bin "$FIRMWARE_NAME"
-mkdir -p "../../../..//deploy"
-mv "$FIRMWARE_NAME" "../../../../../deploy/"
-
-echo "Build complete! Firmware is in the 'deploy' directory."
