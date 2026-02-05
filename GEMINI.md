@@ -34,5 +34,5 @@ git repo URL: <https://github.com/micropython/micropython.git>
 
 ### MQTT_AS
 
-git repo URL: <https://github.com/peterhinch/micropython-mqtt.git>
-howto install on ESP8266: <https://github.com/peterhinch/micropython-mqtt/blob/master/README.md#22-installation-on-esp8266>
+* git repo URL: <https://github.com/peterhinch/micropython-mqtt.git>
+* howto install on ESP8266: <https://github.com/peterhinch/micropython-mqtt/blob/master/README.md#22-installation-on-esp8266>
