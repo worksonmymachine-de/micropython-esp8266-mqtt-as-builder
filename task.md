@@ -1,4 +1,3 @@
-# Aufgabe
+# Task
 
-Erstelle ein Script zum bauen der beschriebenen custom micropython firmware
-Es wird in einem proxmox debian container laufen
+Create a script to build the described custom MicroPython firmware. Currently for Linux only.
