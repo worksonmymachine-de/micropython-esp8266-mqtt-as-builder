@@ -45,14 +45,15 @@ An automated toolchain for building custom MicroPython firmware for the **D1 Min
 
 ### Cross Compiler (Docker)
 
-This pipeline no longer relies on native host toolchains, Python virtual environments, or `micropython-embed`. 
+This pipeline no longer relies on native host toolchains, Python virtual environments, or `micropython-embed`.
 
 Instead, it uses the official community-supported Docker container for ESP8266 builds:
+
 * Docker Image: `larsks/esp-open-sdk`
-* The script automatically downloads this image and mounts the local working directory into it to compile `mpy-cross` and the final firmware. 
+* The script automatically downloads this image and mounts the local working directory into it to compile `mpy-cross` and the final firmware.
 * *Note:* If running inside a Proxmox LXC container, ensure **Nesting** is enabled in the container features so Docker can run properly.
 
 ### Deployment
 
-* The finished firmware binary and the `mqtt_local.py` configuration file are automatically moved to the `export/` directory within the project root. 
+* The finished firmware binary and the `mqtt_local.py` configuration file are automatically moved to the `export/` directory within the project root.
 * To make this accessible over your network, you can mount a Samba/NFS share directly to this `export/` folder.
